@@ -1,0 +1,31 @@
+FROM ubuntu:latest
+
+# Instalação das dependências
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk wget && \
+    apt-get clean
+
+# Download e instalação do Apache Spark
+RUN wget https://downloads.apache.org/spark/spark-3.2.4/spark-3.2.4-bin-hadoop2.7.tgz && \
+    tar -xvzf spark-3.2.4-bin-hadoop2.7.tgz && \
+    mv spark-3.2.4-bin-hadoop3.2 /spark && \
+    rm spark-3.2.4-bin-hadoop3.2.tgz
+
+# Configuração do ambiente do Spark
+ENV SPARK_HOME=/spark
+ENV PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+
+# Criação do diretório data e do diretório para o código Python
+RUN mkdir /data && mkdir /app
+
+# Adiciona o código Python para o diretório de aplicativos /app
+COPY app.py /app
+
+# Define o diretório de trabalho atual como /app
+WORKDIR /app
+
+# Define o ponto de montagem do volume para o diretório /data
+VOLUME /data
+
+# Executa o script Python ao iniciar o contêiner
+CMD ["spark-submit", "--master", "local[*]", "app.py"]
