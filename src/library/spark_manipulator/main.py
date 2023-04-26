@@ -10,6 +10,8 @@ class SparkManipulator:
         # cria uma nova sessão Spark
         self.spark = SparkSession.builder.appName(app_name).config("spark.jars", "postgresql-42.2.14.jar").getOrCreate()
         self.data = {}
+
+        self.spark.sparkContext.setLogLevel("ERROR")
     
     def read_from_jdbc(self,table,url,user,pwd,driver):
         self.data[table] = self.spark.read.jdbc(url=url, table=table, properties={"user": user, "password": pwd, "driver": driver})
@@ -20,9 +22,9 @@ class SparkManipulator:
         self.data['join'] = self.data[table_1].join(self.data[table_2],on,how)
     def select_columns(self,table,list_columns):
         self.data[f'{table}_selected'] = self.data[table][list_columns]
-    def write_data_partitioned(self,table,ext = "csv",*args):
+    def write_data_partitioned(self,table,column_partition,dest_name,ext = "csv"):
         if ext == "csv":
-            self.data[table].write.partitionBy(args[0]).csv(args[1])
+            self.data[table].write.partitionBy(column_partition).mode("overwrite").csv(dest_name)
 
     
 
