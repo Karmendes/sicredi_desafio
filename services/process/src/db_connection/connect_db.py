@@ -1,8 +1,9 @@
 import psycopg2
+from time import sleep
 
 class ConnectDB:
     def __init__(self,user,pwd,database,host= 'postgresdb',port = 5432):
-        print(f"{host}")
+        sleep(5) # Tenta esperar que o banco esteja apto a conexão
         self.engine = psycopg2.connect(f'postgresql://{user}:{pwd}@{host}:{port}/{database}')    
         try:
             self.connection = self.engine.cursor()
