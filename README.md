@@ -5,9 +5,11 @@
 # Como usar
 Certifique - se que você possua o docker e o docker compose instalado na sua máquina. Também certifique que você esteja na raíz do projeto
 
-'''
+```
+
 docker-compose up
-'''
+
+```
 
 Este comando irá instanciar três serviços: 
 - **postgresdb**: banco de dados que irá conter os dados fictícios. 
