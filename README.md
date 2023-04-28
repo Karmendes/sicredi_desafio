@@ -8,7 +8,7 @@ A estrutura do projeto consiste em duas partes. Dentro da pasta services, há du
 
 Na pasta de banco de dados, há o dockerfile de inicialização de um postgres e um arquivo sql com a criação do banco e do formato das tabelas.
 
-Já na pasta process, há dois arquivos, **populate_db.py** que contém a lógica de carregamento dos dados fakes para o banco e também temos o arquivo **etl.py**, que contém a lógica para o processamento desses dados. Ambos são suportados pelas classes que estão no caminho src/library, que contém as classes para o projeto. Há também na pasta process o dockerfile que monta a imagem base para que os dois processos rodem.
+Já na pasta process, há dois arquivos, **populate_db.py** que contém a lógica de carregamento dos dados fakes para o banco e também temos o arquivo **etl.py**, que contém a lógica para o processamento desses dados. Ambos são suportados pelas classes que estão no caminho **src/library**, que contém as classes para o projeto. Há também na pasta **process**, o dockerfile que monta a imagem base para que os dois processos rodem.
 
 Certifique - se que você possua o docker e o docker compose instalado na sua máquina. Também certifique que você esteja na raíz do projeto
 
