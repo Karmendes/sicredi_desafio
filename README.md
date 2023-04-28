@@ -3,8 +3,10 @@
 ![](arquitetura.png)
 
 # Requisitos
-Docker:
+Docker
+
 Docker-compose
+
 Python >=3.10
 
 # Como usar
