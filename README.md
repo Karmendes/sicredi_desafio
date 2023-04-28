@@ -28,7 +28,7 @@ Este comando irá instanciar três serviços:
 - **python**: Processo que carrega os dados fake para dentro do banco
 - **spark**: Processo que faz o ETL dos dados.
 
-O final do processo irá gerar os dados na pasta **data** com formato csv, que está no caminho services/process/data/ particionado pelo nome do cliente.
+O final do processo irá gerar os dados na pasta **data** com formato csv, que está no caminho: **services/process/data/** particionado pelo nome do cliente.
 
 
 ## Testes
