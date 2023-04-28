@@ -2,30 +2,40 @@
 
 ![](arquitetura.png)
 
+# Requisitos
+Docker:
+Docker-compose
+Python >=3.10
+
 # Como usar
 
-A estrutura do projeto consiste em duas partes. Dentro da pasta services, há duas outras pastas que tem a divisão entre o banco de dados e os processos. Na raíz ainda, também temos o docker-compose que levanta os serviços.
 
-Na pasta de banco de dados, há o dockerfile de inicialização de um postgres e um arquivo sql com a criação do banco e do formato das tabelas.
+## Projeto
 
-Já na pasta process, há dois arquivos, **populate_db.py** que contém a lógica de carregamento dos dados fakes para o banco e também temos o arquivo **etl.py**, que contém a lógica para o processamento desses dados. Ambos são suportados pelas classes que estão no caminho **src/library**, que contém as classes para o projeto. Há também na pasta **process**, o dockerfile que monta a imagem base para que os dois processos rodem.
+Certifique - se que você está na raiz do projeto. O processo pode demorar 5 minutos, para buildar e rodar.
 
-Certifique - se que você possua o docker e o docker compose instalado na sua máquina. Também certifique que você esteja na raíz do projeto
+
 
 ```
-
 docker-compose up
-
 ```
+**Disclaimer**: Talvez algum processo quebre no run, porém rodando de novo irá gerar os dados. Não consegui identificar a causa ainda.
 
 Este comando irá instanciar três serviços: 
 - **postgresdb**: banco de dados que irá conter os dados fictícios. 
 - **python**: Processo que carrega os dados fake para dentro do banco
 - **spark**: Processo que faz o ETL dos dados.
 
-O final do processo irá gerar os dados na pasta **data** com formato csv, que está no caminho sicredi_desafio/services/process/data/ particionado pelo nome do cliente.
+O final do processo irá gerar os dados na pasta **data** com formato csv, que está no caminho services/process/data/ particionado pelo nome do cliente.
 
 
+## Testes
+
+Certifique - se que você está na raiz do projeto.
+
+```
+python tests/test_core.py
+```
 
 # Melhorias
 
