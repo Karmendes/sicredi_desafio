@@ -1,14 +1,12 @@
 from src.spark_manipulator.main import SparkManipulator
 from src.logger.main import Logger
-from time import sleep
+from src.utils.main import load_json
 
 
-jdbc_cred = {
-    "url" :"jdbc:postgresql://postgresdb:5432/sicredi",
-    "driver" : "org.postgresql.Driver",
-    "user" :"sicredi_user",
-    "password" :"sicredi123"
-}
+# Importar credenciais
+creds = load_json('credentials/creds.json')
+
+
 
 class ETLSpark:
     def __init__(self,jdbc_cred = None,folder_dest = "data/"):
@@ -60,7 +58,7 @@ class ETLSpark:
         Logger.emit(f"Finalizando ETL")
 
 if __name__ == "__main__":
-    etl = ETLSpark(jdbc_cred,folder_dest)
+    etl = ETLSpark(creds)
     etl.run(["associado","conta","cartao","movimento"])
 
 

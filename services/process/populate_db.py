@@ -1,12 +1,16 @@
 from src.db_connection.connect_db import ConnectDB
 from src.faker.faker_data import FakerCreator
 from src.logger.main import Logger
+from src.utils.main import load_json
 
+
+# Importar credenciais
+creds = load_json('credentials/creds.json')
 
 # Instanciado
 Logger.emit('Iniciando carregamento')
 faker = FakerCreator(10)
-connector = ConnectDB("sicredi_user","sicredi123","sicredi")
+connector = ConnectDB(creds['user'],creds["password"],creds['db'])
 
 
 

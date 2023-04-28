@@ -14,7 +14,7 @@ RUN wget https://downloads.apache.org/spark/spark-3.2.4/spark-3.2.4-bin-hadoop2.
 ENV SPARK_HOME=/spark
 ENV PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 # Variavel do postgres
-ENV SPARK_CLASSPATH=$SPARK_CLASSPATH:/app/postgresql-42.6.0.jar
+ENV SPARK_CLASSPATH=$SPARK_CLASSPATH:/app/driver/postgresql-42.6.0.jar
 # Define o diretório de trabalho atual como /app
 WORKDIR /app
 # Copia o arquivo requirements.txt para o diretório de trabalho

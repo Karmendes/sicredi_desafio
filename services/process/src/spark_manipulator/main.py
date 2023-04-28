@@ -2,13 +2,13 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 import os
 
-os.environ['PYSPARK_SUBMIT_ARGS'] = '--driver-class-path postgresql-42.6.0.jar pyspark-shell'
+os.environ['PYSPARK_SUBMIT_ARGS'] = '--driver-class-path driver/postgresql-42.6.0.jar pyspark-shell'
 
 
 class SparkManipulator:
     def __init__(self,app_name = "default"):
         # cria uma nova sessão Spark
-        self.spark = SparkSession.builder.appName(app_name).config("spark.jars", "postgresql-42.6.0.jar").getOrCreate()
+        self.spark = SparkSession.builder.appName(app_name).config("spark.jars", "driver/postgresql-42.6.0.jar").getOrCreate()
         self.data = {}
 
         self.spark.sparkContext.setLogLevel("ERROR")
