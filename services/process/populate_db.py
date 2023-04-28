@@ -1,6 +1,6 @@
-from src.library.db_connection.connect_db import ConnectDB
-from src.library.faker.faker_data import FakerCreator
-from src.library.logger.main import Logger
+from src.db_connection.connect_db import ConnectDB
+from src.faker.faker_data import FakerCreator
+from src.logger.main import Logger
 
 
 # Instanciado

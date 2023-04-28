@@ -1,5 +1,5 @@
-from src.library.spark_manipulator.main import SparkManipulator
-from src.library.logger.main import Logger
+from src.spark_manipulator.main import SparkManipulator
+from src.logger.main import Logger
 from time import sleep
 
 
@@ -10,10 +10,8 @@ jdbc_cred = {
     "password" :"sicredi123"
 }
 
-folder_dest = "data/"
-
 class ETLSpark:
-    def __init__(self,jdbc_cred = None,folder_dest = None):
+    def __init__(self,jdbc_cred = None,folder_dest = "data/"):
         self.creds = jdbc_cred
         self.folder_dest = folder_dest
         self.spark = SparkManipulator()

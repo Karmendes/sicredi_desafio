@@ -5,13 +5,14 @@ import datetime
 # Cria uma instância do Faker para gerar dados aleatórios
 
 class FakerCreator:
-    def __init__(self,qtd):
+    def __init__(self,qtd,TEST = False):
         self.faker = Faker()
         self.associado = []
         self.conta = []
         self.cartao = []
         self.movimentacao = []
         self.qtd = qtd
+        self._TEST = TEST
 
     def create_fake_data_associado(self):
         for i in range(self.qtd):
@@ -22,7 +23,9 @@ class FakerCreator:
                 'email' : self.faker.email()
             }
             self.associado.append(data)
-        self.create_fake_data_conta()
+        
+        if self._TEST == False:
+            self.create_fake_data_conta()
     
     def create_fake_data_conta(self):
         for i in range(self.qtd):
@@ -32,7 +35,8 @@ class FakerCreator:
                 'id_associado': i + 1
             }
             self.conta.append(data)
-        self.create_fake_data_cartao()
+        if self._TEST == False:
+            self.create_fake_data_cartao()
     
     def create_fake_data_cartao(self):
         for i in range(self.qtd):
@@ -41,7 +45,8 @@ class FakerCreator:
                'id_conta': i + 1,
                'id_associado': i + 1}
             self.cartao.append(data)
-        self.create_fake_data_movimentacao()
+        if self._TEST == False:
+            self.create_fake_data_movimentacao()
 
     def create_fake_data_movimentacao(self):
         for i in range(self.qtd * 100):
