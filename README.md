@@ -21,7 +21,6 @@ Certifique - se que você está na raiz do projeto. O processo pode demorar 5 mi
 ```
 docker-compose up
 ```
-**Disclaimer**: Talvez algum processo quebre no run, porém rodando de novo irá gerar os dados. Não consegui identificar a causa ainda.
 
 Este comando irá instanciar três serviços: 
 - **postgresdb**: banco de dados que irá conter os dados fictícios. 
