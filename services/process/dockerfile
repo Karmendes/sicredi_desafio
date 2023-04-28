@@ -1,0 +1,25 @@
+FROM ubuntu:latest
+# Instalação das dependências
+RUN apt-get update && \
+    apt-get install -y openjdk-11-jdk wget python3 python3-pip && \
+    apt-get clean
+# Criação do diretório data e do diretório para o código Python
+RUN mkdir app/
+# Download e instalação do Apache Spark
+RUN wget https://downloads.apache.org/spark/spark-3.2.4/spark-3.2.4-bin-hadoop2.7.tgz && \
+    tar -xvzf spark-3.2.4-bin-hadoop2.7.tgz && \
+    mv spark-3.2.4-bin-hadoop2.7 /spark && \
+    rm spark-3.2.4-bin-hadoop2.7.tgz
+# Configuração do ambiente do Spark
+ENV SPARK_HOME=/spark
+ENV PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+# Variavel do postgres
+ENV SPARK_CLASSPATH=$SPARK_CLASSPATH:/app/postgresql-42.6.0.jar
+# Define o diretório de trabalho atual como /app
+WORKDIR /app
+# Copia o arquivo requirements.txt para o diretório de trabalho
+COPY requirements.txt .
+# Instalado pacotes
+RUN pip install -r requirements.txt
+# Adiciona o código Python para o diretório de aplicativos /app
+COPY . .

@@ -1,0 +1,14 @@
+FROM postgres:latest
+
+# Define as variáveis de ambiente
+ENV POSTGRES_DB sicredi
+ENV POSTGRES_USER sicredi_user
+ENV POSTGRES_PASSWORD sicredi123
+
+# Copia o script para a pasta de inicialização do PostgreSQL
+COPY init.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 5432
+
+
+

@@ -1,0 +1,34 @@
+version: '3.8'
+
+
+services:
+  postgres:
+    build: ./services/db/
+    networks: 
+      - compose-bridge
+    container_name: postgresdb
+    ports:
+      - "5432:5432"
+  python:
+    build: ./services/process
+    command: python3 populate_db.py
+    networks: 
+      - compose-bridge
+    container_name: populate
+    depends_on:
+      - postgres  
+  spark:
+    build: ./services/process
+    container_name: etl
+    command: python3 etl.py 
+    networks: 
+      - compose-bridge
+    volumes:
+      - ./services/process/data:/app/data
+    depends_on:
+      - python
+
+networks:
+  compose-bridge:
+    driver: bridge
+
