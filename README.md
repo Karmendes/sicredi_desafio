@@ -1,20 +1,20 @@
-# Arquitetura
+# Architecture
 
 ![](arquitetura.png)
 
-# Requisitos
+# Requirements
 Docker
 
 Docker-compose
 
 Python >=3.10
 
-# Como usar
+# How to use
 
 
-## Projeto
+## Project
 
-Certifique - se que você está na raiz do projeto. O processo pode demorar 5 minutos, para buildar e rodar.
+Make sure you are at the root of the project. The process can take 5 minutes to build and run.
 
 
 
@@ -22,17 +22,17 @@ Certifique - se que você está na raiz do projeto. O processo pode demorar 5 mi
 docker-compose up
 ```
 
-Este comando irá instanciar três serviços: 
-- **postgresdb**: banco de dados que irá conter os dados fictícios. 
-- **python**: Processo que carrega os dados fake para dentro do banco
-- **spark**: Processo que faz o ETL dos dados.
+This command will instantiate three services:
+- **postgresdb**: database that will contain the dummy data.
+- **python**: Process that loads fake data into the database
+- **spark**: Process that does the ETL of the data.
 
-O final do processo irá gerar os dados na pasta **data** com formato csv, que está no caminho: **services/process/data/** particionado pelo nome do cliente.
+The end of the process will generate the data in the **data** folder with csv format, which is in the path: **services/process/data/** partitioned by the customer's name.
 
 
-## Testes
+## Tests
 
-Certifique - se que você está na raiz do projeto.
+Make sure you are at the root of the project.
 
 ```
 python tests/test_core.py
@@ -40,14 +40,14 @@ python tests/test_core.py
 
 # Melhorias
 
-## Dados Fakes
-Decidi pela simplicidade na criação dos dados, ou seja, cada cliente tem somente uma conta e um cartão associado. E os IDs dos mesmos foram contruidos de forma sequencial para que não ocorresse nenhum descasamento. Com mais tempo criaria outros métodos para criar relações N X N.
+## Improvements
+I decided to simplify the creation of data, that is, each customer has only one account and one associated card. And their IDs were constructed sequentially so that no mismatch occurred. With more time I would create other methods to create N X N relationships.
 
 ## CI/CD
-Usando actions do github, poderiamos colocar uma action para toda vez que ocorre - se um push na main, tivessemos um build da imagem para posterior deploy.
+Using github actions, we could put an action for every time it occurs - if a push in the main, we would have an image build for later deployment.
 
-## Imagem menor
-Tentaria usar alguma imagem menor para a base que usei nos processos do spark e python.
+## Smaller image
+I would try to use some smaller image for the base that I used in spark and python processes.
 
 
 
