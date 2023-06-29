@@ -38,9 +38,9 @@ Make sure you are at the root of the project.
 python tests/test_core.py
 ```
 
-# Melhorias
+# Improvements
 
-## Improvements
+## Fake Data
 I decided to simplify the creation of data, that is, each customer has only one account and one associated card. And their IDs were constructed sequentially so that no mismatch occurred. With more time I would create other methods to create N X N relationships.
 
 ## CI/CD
